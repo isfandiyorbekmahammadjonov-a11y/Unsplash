@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosImages } from "react-icons/io";
 import { GiSaveArrow } from "react-icons/gi";
 import { FaHeart } from "react-icons/fa";
-import { IoMoonOutline } from "react-icons/io5";
+import { IoMoonOutline } from "react-icons/io5";1
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
@@ -19,37 +19,13 @@ function Navbar() {
           <Link to={"/"} className="cursor-pointer hover:opacity-70">
             Home
           </Link>
-          <Link to={"about"} className="cursor-pointer hover:opacity-70">
-            About
+          <Link to={"Dowlands"} className="cursor-pointer hover:opacity-70">
+            Dowlands
           </Link>
           <Link to={"contact"} className="cursor-pointer hover:opacity-70">
             Contact
           </Link>
         </ul>
-
-        {/* RIGHT ICONS */}
-        <div className="flex items-center gap-5 text-xl">
-          {/* SAVE */}
-          <div className="relative cursor-pointer">
-            <GiSaveArrow />
-            <span className="absolute -top-2 -right-2 text-[10px] bg-purple-500 text-white px-1 rounded-full">
-              0
-            </span>
-          </div>
-
-          {/* HEART */}
-          <div className="relative cursor-pointer">
-            <FaHeart />
-            <span className="absolute -top-2 -right-2 text-[10px] bg-purple-500 text-black px-1 rounded-full">
-              1
-            </span>
-          </div>
-
-          {/* MOON */}
-          <div className="cursor-pointer">
-            <IoMoonOutline />
-          </div>
-        </div>
       </div>
     </nav>
   );
