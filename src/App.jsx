@@ -3,7 +3,7 @@ import React, { Children } from "react";
 import MainLayout from "./layouts/MainLoyout";
 import Home from "./companets/Home";
 import Dowlands from "./companets/Dowlands";
-import Contact from "./companets/contact";
+import Like from "./companets/Like";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Modal from "./companets/Modal";
 function App() {
@@ -21,8 +21,8 @@ function App() {
           element: <Dowlands />,
         },
         {
-          path: "contact",
-          element: <Contact />,
+          path: "link",
+          element: <Like />,
         },
         {
           path: "/modal/:id",

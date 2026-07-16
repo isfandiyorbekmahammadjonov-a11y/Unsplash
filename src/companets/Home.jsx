@@ -1,10 +1,13 @@
 import React from "react";
-import Imgs from "./Imgs";
 import { useState } from "react";
 import { FiEye, FiDownload } from "react-icons/fi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { like, dowlands } from "../redux/features/gallerySlice";
 function Home() {
+  const data = useSelector((state) => state.gallery.gallery);
+  const dispatch = useDispatch();
   let [count, setCount] = useState(5);
   function handleChange() {
     setCount((count += 5));
@@ -23,8 +26,8 @@ function Home() {
           </button>
         </div>
         <div className="columns-3 gap-4 p-6 px-65">
-          {Imgs &&
-            Imgs.slice(0, count).map((item) => (
+          {data &&
+            data.slice(0, count).map((item) => (
               <div
                 key={item.id}
                 className="relative mb-4 overflow-hidden rounded-xl group"
@@ -34,8 +37,6 @@ function Home() {
                   alt={item.title}
                   className={`w-full ${item.h} object-cover transition-transform duration-500 group-hover:scale-105`}
                 />
-
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   {/* Top Left */}
                   <Link
@@ -44,21 +45,25 @@ function Home() {
                   >
                     <FiEye />
                   </Link>
-
-                  {/* Top Right */}
-                  <button className="absolute top-4 right-4 text-white text-2xl">
-                    <AiOutlineHeart />
+                  <button
+                    onClick={() => dispatch(like(item.id))}
+                    className="absolute top-4 right-4 text-white text-2xl"
+                  >
+                    <AiOutlineHeart color={item.liked ? "red" : "white"} />
                   </button>
+                  <button
+                    onClick={() => {
+                      dispatch(dowlands(item.id));
 
-                  {/* Bottom Right */}
-                  <a
-                    href={item.image}
-                    item={item}
-                    download
-                    className="absolute bottom-4 right-4 text-white text-2xl"
+                      const link = document.createElement("a");
+                      link.href = item.image;
+                      link.download = item.title;
+                      link.click();
+                    }}
+                    className="absolute bottom-4 right-4 text-white text-3xl hover:text-green-400"
                   >
                     <FiDownload />
-                  </a>
+                  </button>
                 </div>
               </div>
             ))}

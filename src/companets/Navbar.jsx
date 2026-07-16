@@ -2,7 +2,8 @@ import React from "react";
 import { IoIosImages } from "react-icons/io";
 import { GiSaveArrow } from "react-icons/gi";
 import { FaHeart } from "react-icons/fa";
-import { IoMoonOutline } from "react-icons/io5";1
+import { IoMoonOutline } from "react-icons/io5";
+1;
 import { Link } from "react-router-dom";
 function Navbar() {
   return (
@@ -22,8 +23,8 @@ function Navbar() {
           <Link to={"Dowlands"} className="cursor-pointer hover:opacity-70">
             Dowlands
           </Link>
-          <Link to={"contact"} className="cursor-pointer hover:opacity-70">
-            Contact
+          <Link to={"link"} className="cursor-pointer hover:opacity-70">
+            Link
           </Link>
         </ul>
       </div>

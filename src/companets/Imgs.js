@@ -294,3 +294,4 @@ const Imgs = [
   },
 ];
 export default Imgs
+localStorage.setItem("gallery", JSON.stringify(Imgs))

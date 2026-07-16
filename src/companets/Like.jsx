@@ -4,28 +4,29 @@ import { AiFillHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { like } from "../redux/features/gallerySlice";
-function Dowlands() {
+
+function Contact() {
   const data = useSelector((state) => state.gallery.gallery);
   const dispatch = useDispatch();
-  const downloadedItems = data.filter((item) => item.downloaded);
+
+  const likedItems = data.filter((item) => item.liked);
+
   return (
     <div className="w-full min-h-screen bg-[#282a36] p-10 px-20">
-      <h1 className="text-white text-3xl font-bold mb-8">
-        Downloaded Images 📥
-      </h1>
+      <h1 className="text-white text-3xl font-bold mb-8">Liked Images ❤️</h1>
 
-      {downloadedItems.length === 0 ? (
+      {likedItems.length === 0 ? (
         <div className="text-center text-gray-400 text-xl mt-20">
-          No downloaded images yet
+          No liked images yet
         </div>
       ) : (
         <div className="columns-3 gap-5">
-          {downloadedItems.map((item) => (
+          {likedItems.map((item) => (
             <div
               key={item.id}
               className="
-              relative mb-5 overflow-hidden
-              rounded-xl group shadow-lg
+              relative mb-5 overflow-hidden rounded-xl 
+              group shadow-lg
               "
             >
               <img
@@ -37,7 +38,6 @@ function Dowlands() {
                 group-hover:scale-110
                 "
               />
-
               <div
                 className="
                 absolute inset-0
@@ -47,25 +47,33 @@ function Dowlands() {
                 transition duration-300
                 "
               >
+                {/* Eye */}
                 <Link
                   to={`/modal/${item.id}`}
                   className="
                   absolute top-4 left-4
                   text-white text-3xl
                   hover:text-pink-400
+                  transition
                   "
                 >
                   <FiEye />
                 </Link>
+
+                {/* Like */}
                 <button
                   onClick={() => dispatch(like(item.id))}
                   className="
                   absolute top-4 right-4
                   text-3xl
+                  hover:scale-125
+                  transition
                   "
                 >
-                  <AiFillHeart color={item.liked ? "red" : "white"} />
+                  <AiFillHeart color="red" />
                 </button>
+
+                {/* Info bottom */}
                 <div
                   className="
                   absolute bottom-4 left-4
@@ -74,16 +82,20 @@ function Dowlands() {
                 >
                   <h2 className="font-bold text-lg">{item.title}</h2>
 
-                  <p className="text-gray-300 text-sm">{item.category}</p>
+                  <p className="text-sm text-gray-300">{item.category}</p>
                 </div>
-                <div
+                <a
+                  href={item.image}
+                  download
                   className="
                   absolute bottom-4 right-4
-                  text-green-400 text-3xl
+                  text-white text-3xl
+                  hover:text-green-400
+                  transition
                   "
                 >
                   <FiDownload />
-                </div>
+                </a>
               </div>
             </div>
           ))}
@@ -93,4 +105,4 @@ function Dowlands() {
   );
 }
 
-export default Dowlands;
+export default Contact;
