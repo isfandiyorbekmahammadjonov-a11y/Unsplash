@@ -24,7 +24,7 @@ function Navbar() {
             Dowlands
           </Link>
           <Link to={"link"} className="cursor-pointer hover:opacity-70">
-            Link
+            Like
           </Link>
         </ul>
       </div>
